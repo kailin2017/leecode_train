@@ -144,9 +144,20 @@ object LeeCode75 {
     }
 
     // [Day 08] LeetCode 75 - 142. Linked List Cycle II
-//    fun detectCycle(head: ListNode?): ListNode? {
-//
-//    }
+    fun detectCycle(head: ListNode?): ListNode? {
+        val tempList = mutableListOf<ListNode>()
+        var temp: ListNode? = head
+        var i = 0
+        while (temp != null) {
+            tempList.add(i, temp)
+            if (tempList.contains(temp.next)){
+                return temp.next
+            }
+            temp = temp.next
+            i++
+        }
+        return null
+    }
 }
 
 class ListNode(var `val`: Int) {
