@@ -144,17 +144,22 @@ object LeeCode75 {
     }
 
     // [Day 08] LeetCode 75 - 142. Linked List Cycle II
+    // 演算法參考 https://ithelp.ithome.com.tw/articles/10223721
     fun detectCycle(head: ListNode?): ListNode? {
-        val tempList = mutableListOf<ListNode>()
-        var temp: ListNode? = head
-        var i = 0
-        while (temp != null) {
-            tempList.add(i, temp)
-            if (tempList.contains(temp.next)){
-                return temp.next
+        var fast: ListNode? = head
+        var slow: ListNode? = head
+
+        while (fast?.next != null) {
+            slow = slow?.next
+            fast = fast.next?.next
+
+            if (slow == fast) {
+                slow = head
+                while (slow != null) {
+                    slow = slow.next
+                    fast = fast?.next
+                }
             }
-            temp = temp.next
-            i++
         }
         return null
     }
