@@ -1,5 +1,7 @@
 package org.example
 
+import kotlin.math.min
+
 object LeeCode75 {
 
     // [Day 01] 什麼是LeetCode 75？ 以及 1480. Running Sum of 1d Array
@@ -162,6 +164,20 @@ object LeeCode75 {
             }
         }
         return null
+    }
+
+    //[Day 09] LeetCode 75 - 121. Best Time to Buy and Sell Stock
+    fun maxProfit(prices: IntArray): Int {
+
+        var minPrice = prices[0]
+        var maxProfit = 0
+        prices.forEach {
+            when {
+                minPrice > it -> minPrice = it
+                it - minPrice > maxProfit -> maxProfit = it - minPrice
+            }
+        }
+        return maxProfit
     }
 }
 
